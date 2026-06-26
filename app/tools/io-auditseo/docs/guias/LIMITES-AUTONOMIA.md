@@ -1,1 +1,0 @@
-E:/lib/LÍMITES DE AUTONOMÍA.md

@@ -1,7 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-echo "🔍 Running type check before push..."
-pnpm run type-check || echo "⚠️  Type warnings found (ignoreBuildErrors: true is set)"
-
-echo "✅ Push allowed!"

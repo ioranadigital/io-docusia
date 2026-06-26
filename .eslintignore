@@ -1,6 +1,0 @@
-app/
-artifacts/
-**/node_modules/
-**/.next/
-**/dist/
-**/build/

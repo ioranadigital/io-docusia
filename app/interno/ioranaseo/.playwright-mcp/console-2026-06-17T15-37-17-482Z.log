@@ -1,9 +1,0 @@
-[      19ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
-[      56ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
-[     495ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1f56dc._.js:13925
-[     608ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
-[    9269ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
-[   21323ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
-[   46540ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
-[   46584ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
-[   46593ms] [LOG] [Fast Refresh] done in 9ms @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12266
