@@ -17,6 +17,7 @@ RUN apk add --no-cache cairo-dev jpeg-dev pango-dev giflib-dev pixman-dev
 WORKDIR /app
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/next.config.mjs ./next.config.mjs
 COPY package.json pnpm-lock.yaml* ./
 
 # Install production dependencies only
