@@ -23,7 +23,6 @@ coverage
 .editorconfig
 .gitattributes
 yarn.lock
-pnpm-lock.yaml
 .turbo
 .eslintcache
 .typescript
