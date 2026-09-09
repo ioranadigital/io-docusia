@@ -1,0 +1,112 @@
+.heroTitle {
+  margin-top: var(--space-2);
+  font-size: var(--text-h1);
+  max-width: 24ch;
+}
+
+.heroLead {
+  margin-top: var(--space-3);
+  font-size: 1.02rem;
+  color: var(--color-text-muted);
+  max-width: 44ch;
+}
+
+.heroNote {
+  margin-top: var(--space-2);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-text);
+  max-width: 44ch;
+}
+
+.reasonsLabel {
+  margin-top: var(--space-6);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.reasonsList {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.reasonsList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+
+.reasonMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-contrast);
+}
+
+.email {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.emailLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.emailValue {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-contrast);
+}
+
+.alternative {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.alternativeTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.alternativeText {
+  margin-top: var(--space-2);
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  max-width: 44ch;
+}
+
+.alternativeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: var(--space-3);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-contrast);
+}
+
+.alternativeLink:hover {
+  color: var(--color-text);
+}

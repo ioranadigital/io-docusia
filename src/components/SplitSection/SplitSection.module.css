@@ -1,0 +1,42 @@
+.section {
+  background: var(--color-background);
+}
+
+.surface {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-7);
+}
+
+.ratio6040 {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+
+.col {
+  min-width: 0;
+}
+
+.colRight {
+  padding-left: var(--space-7);
+  border-left: 1px solid var(--color-border);
+}
+
+@media (max-width: 860px) {
+  .grid,
+  .ratio6040 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
+  }
+  .colRight {
+    padding-left: 0;
+    border-left: none;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+}

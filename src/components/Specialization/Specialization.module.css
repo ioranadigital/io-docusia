@@ -1,0 +1,491 @@
+.section {
+  padding: var(--space-6) 0;
+  background: var(--color-secondary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  font-size: var(--text-h2);
+}
+
+.text {
+  color: var(--color-text-muted);
+  max-width: 38ch;
+}
+
+.diagram {
+  position: relative;
+}
+
+.tag {
+  position: absolute;
+  top: -2.4rem;
+  right: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-contrast);
+  text-align: right;
+}
+
+.flowRow {
+  display: grid;
+  grid-template-columns: minmax(160px, 210px) 1fr;
+  align-items: start;
+  gap: 0;
+}
+
+.sourcesWrap {
+  position: relative;
+  height: 190px;
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.convergeDot {
+  position: absolute;
+  top: 50%;
+  right: -14px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-support);
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lines path {
+  fill: none;
+  stroke: var(--color-support);
+  stroke-width: 0.4;
+  stroke-dasharray: 1.4 1.4;
+}
+
+.sources {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sources li {
+  display: flex;
+}
+
+.sourceButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 134px;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.sourceIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-contrast);
+  flex-shrink: 0;
+}
+
+.sourceLabel {
+  color: var(--color-text);
+}
+
+/* ===== Demostración automática (una sola vez, vía IntersectionObserver) ===== */
+
+@keyframes sourcePulse {
+  0% {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    transform: scale(1);
+  }
+  55% {
+    background: var(--color-secondary);
+    border-color: var(--color-accent);
+    transform: scale(1.04);
+  }
+  100% {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    transform: scale(1);
+  }
+}
+
+.diagram[data-started="true"] .sourceButton {
+  animation: sourcePulse 0.3s ease calc(var(--i, 0) * 0.13s);
+}
+
+@keyframes linePulse {
+  0% {
+    stroke: var(--color-support);
+    opacity: 0.55;
+  }
+  55% {
+    stroke: var(--color-accent);
+    opacity: 1;
+  }
+  100% {
+    stroke: var(--color-support);
+    opacity: 0.55;
+  }
+}
+
+.diagram[data-started="true"] .lines path {
+  animation: linePulse 0.35s ease calc(var(--i, 0) * 0.13s + 0.05s);
+}
+
+@keyframes dotPulse {
+  0% {
+    background: var(--color-support);
+    transform: translateY(-50%) scale(1);
+  }
+  55% {
+    background: var(--color-accent);
+    transform: translateY(-50%) scale(1.15);
+  }
+  100% {
+    background: var(--color-support);
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.diagram[data-started="true"] .convergeDot {
+  animation: dotPulse 0.3s ease 0.75s;
+}
+
+@keyframes chainNodePulse {
+  0% {
+    background: var(--color-contrast);
+    border-color: var(--color-contrast);
+    transform: scale(1);
+  }
+  55% {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: scale(1.04);
+  }
+  100% {
+    background: var(--color-contrast);
+    border-color: var(--color-contrast);
+    transform: scale(1);
+  }
+}
+
+@keyframes chainNodePulseFinal {
+  0% {
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.diagram[data-started="true"] .chainStep:not(.chainStepAccent) .chainNode {
+  animation: chainNodePulse 0.28s ease calc(0.95s + var(--i, 0) * 0.4s);
+}
+
+.diagram[data-started="true"] .chainStepAccent .chainNode {
+  animation: chainNodePulseFinal 0.28s ease calc(0.95s + var(--i, 0) * 0.4s);
+}
+
+@keyframes chainLinePulse {
+  0% {
+    border-color: var(--color-support);
+  }
+  55% {
+    border-color: var(--color-accent);
+  }
+  100% {
+    border-color: var(--color-support);
+  }
+}
+
+.diagram[data-started="true"] .chainStep:not(:last-child)::after {
+  animation: chainLinePulse 0.25s ease
+    calc(0.95s + var(--i, 0) * 0.4s + 0.15s);
+}
+
+.diagram[data-started="true"] .chainStep:first-child::before {
+  animation: chainLinePulse 0.25s ease 0.85s;
+}
+
+/* ===== Interacción hover / foco / click tras la demostración ===== */
+
+.diagram[data-active] .sources li .sourceButton {
+  opacity: 0.5;
+}
+
+.diagram[data-active="0"] .sources li:nth-child(1) .sourceButton,
+.diagram[data-active="1"] .sources li:nth-child(2) .sourceButton,
+.diagram[data-active="2"] .sources li:nth-child(3) .sourceButton,
+.diagram[data-active="3"] .sources li:nth-child(4) .sourceButton {
+  opacity: 1;
+  border-color: var(--color-contrast);
+  background: var(--color-secondary);
+}
+
+.diagram[data-active] .lines path {
+  opacity: 0.3;
+  transition: opacity 0.25s ease, stroke 0.25s ease;
+}
+
+.diagram[data-active="0"] .lines path:nth-child(1),
+.diagram[data-active="1"] .lines path:nth-child(2),
+.diagram[data-active="2"] .lines path:nth-child(3),
+.diagram[data-active="3"] .lines path:nth-child(4) {
+  opacity: 1;
+  stroke: var(--color-contrast);
+}
+
+/* Recorrido continuo hover/foco/tap: convergencia → Proceso → Inteligencia
+   → Automatización → Acción. Se re-dispara cada vez que [data-active]
+   aparece y se mantiene destacado (fill-mode: forwards) mientras dure la
+   selección; al retirarse, las transiciones de base devuelven cada
+   elemento a su aspecto normal. */
+
+@keyframes dotHoverActivate {
+  0% {
+    background: var(--color-support);
+    box-shadow: 0 0 0 0 rgba(79, 111, 99, 0);
+    transform: translateY(-50%) scale(1);
+  }
+  55% {
+    background: var(--color-accent);
+    transform: translateY(-50%) scale(1.2);
+  }
+  100% {
+    background: var(--color-contrast);
+    box-shadow: 0 0 0 5px rgba(79, 111, 99, 0.3);
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.diagram[data-active] .convergeDot {
+  animation: dotHoverActivate 0.3s ease 0.05s forwards;
+}
+
+@keyframes chainEntryLineActivate {
+  0% {
+    border-color: var(--color-support);
+  }
+  100% {
+    border-color: var(--color-text);
+  }
+}
+
+.diagram[data-active] .chainStep:first-child::before {
+  animation: chainEntryLineActivate 0.2s ease 0.05s forwards;
+}
+
+@keyframes chainNodeHoverActivate {
+  0% {
+    background: var(--color-contrast);
+    border-color: var(--color-contrast);
+    transform: scale(1);
+  }
+  55% {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: scale(1.05);
+  }
+  100% {
+    background: var(--color-text);
+    border-color: var(--color-text);
+    transform: scale(1);
+  }
+}
+
+.diagram[data-active] .chainStep:not(.chainStepAccent) .chainNode {
+  animation: chainNodeHoverActivate 0.25s ease
+    calc(var(--i, 0) * 0.18s + 0.15s) forwards;
+}
+
+.diagram[data-active] .chainStepAccent .chainNode {
+  animation: chainNodePulseFinal 0.25s ease calc(var(--i, 0) * 0.18s + 0.15s)
+    forwards;
+}
+
+@keyframes chainLineHoverActivate {
+  0% {
+    border-color: var(--color-support);
+  }
+  55% {
+    border-color: var(--color-accent);
+  }
+  100% {
+    border-color: var(--color-text);
+  }
+}
+
+.diagram[data-active] .chainStep:not(:last-child)::after {
+  animation: chainLineHoverActivate 0.2s ease
+    calc(var(--i, 0) * 0.18s + 0.25s) forwards;
+}
+
+.sourceButton:focus-visible {
+  outline: 2px solid var(--color-contrast);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram[data-started="true"] .sourceButton,
+  .diagram[data-started="true"] .lines path,
+  .diagram[data-started="true"] .convergeDot,
+  .diagram[data-started="true"] .chainStep:not(.chainStepAccent) .chainNode,
+  .diagram[data-started="true"] .chainStepAccent .chainNode,
+  .diagram[data-started="true"] .chainStep:not(:last-child)::after,
+  .diagram[data-started="true"] .chainStep:first-child::before,
+  .diagram[data-active] .convergeDot,
+  .diagram[data-active] .chainStep:first-child::before,
+  .diagram[data-active] .chainStep:not(.chainStepAccent) .chainNode,
+  .diagram[data-active] .chainStepAccent .chainNode,
+  .diagram[data-active] .chainStep:not(:last-child)::after {
+    animation-delay: 0s !important;
+  }
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 84px;
+}
+
+.chainStep {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.chainStep:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 100%;
+  border-top: 2px dotted var(--color-support);
+  transition: border-color 0.3s ease;
+}
+
+.chainStep:first-child::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -30px;
+  width: calc(50% + 30px);
+  border-top: 2px dotted var(--color-support);
+  transition: border-color 0.3s ease;
+}
+
+
+.chainNode {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-contrast);
+  border: 2px solid var(--color-contrast);
+  z-index: 1;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.chainStepAccent .chainNode {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 6px rgba(231, 217, 145, 0.35);
+}
+
+.chainLabel {
+  width: 100%;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  padding: 0 0.15rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tag {
+    position: static;
+    display: block;
+    margin-bottom: var(--space-3);
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .flowRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sourcesWrap {
+    height: auto;
+  }
+  .lines {
+    display: none;
+  }
+  .convergeDot {
+    display: none;
+  }
+  .sources {
+    gap: var(--space-2);
+  }
+  .chain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+  .chainStep {
+    flex-direction: row;
+    align-items: center;
+  }
+  .chainStep:not(:last-child)::after {
+    display: none;
+  }
+  .chainStep:first-child::before {
+    display: none;
+  }
+}

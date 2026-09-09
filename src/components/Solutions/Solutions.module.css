@@ -1,0 +1,94 @@
+.headRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.title {
+  margin-top: var(--space-2);
+  font-size: var(--text-h2);
+}
+
+.intro {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  max-width: 56ch;
+}
+
+.viewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-contrast);
+  white-space: nowrap;
+}
+
+.viewAll:hover {
+  color: var(--color-text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.secondaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.secondaryCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-secondary);
+  border-radius: var(--radius-lg);
+}
+
+.secondaryIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-contrast);
+  flex-shrink: 0;
+}
+
+.secondaryBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.secondaryTitle {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.secondaryDescription {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 900px) {
+  .grid,
+  .secondaryGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .headRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

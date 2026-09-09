@@ -1,0 +1,28 @@
+.section {
+  padding: var(--space-7) 0 var(--space-6);
+}
+
+.centered {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  justify-content: center;
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--text-h2);
+}
+
+.text {
+  margin-top: var(--space-4);
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+}
+
+.text + .text {
+  margin-top: var(--space-2);
+}

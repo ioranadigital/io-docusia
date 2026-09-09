@@ -1,0 +1,240 @@
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.title {
+  margin-top: var(--space-2);
+  font-size: var(--text-h2);
+}
+
+.intro {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-contrast);
+  white-space: nowrap;
+}
+
+.link:hover {
+  color: var(--color-text);
+}
+
+.phases {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-3);
+  margin-top: 7.06rem;
+}
+
+.wave {
+  position: absolute;
+  top: 33px;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  z-index: 0;
+}
+
+.waveSegment {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 0.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1.6 1.6;
+  opacity: 0.7;
+  transition: stroke 0.35s ease, opacity 0.35s ease;
+}
+
+.waveSegment[data-traveled="true"] {
+  stroke: var(--color-support);
+  opacity: 1;
+}
+
+.progressDot {
+  position: absolute;
+  top: 41px;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  z-index: 1;
+  transition: left 0.15s linear, opacity 0.3s ease;
+}
+
+.phase {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.number {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  transition: color 0.35s ease;
+}
+
+.phase[data-state="current"] .number {
+  color: var(--color-accent);
+}
+
+.phase[data-state="completed"] .number {
+  color: var(--color-support);
+}
+
+.node {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  color: var(--color-support);
+  margin: 0.2rem 0 0.45rem;
+  flex-shrink: 0;
+  transition: background-color 0.35s ease, border-color 0.35s ease,
+    color 0.35s ease, transform 0.35s ease;
+}
+
+.phase[data-state="pending"] .node {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.phase[data-state="current"] .node {
+  border-color: var(--color-accent);
+  background: var(--color-secondary);
+  color: var(--color-text);
+  transform: scale(1.05);
+}
+
+.phase[data-state="completed"] .node {
+  border-color: var(--color-support);
+  background: var(--color-background);
+  color: var(--color-contrast);
+  transform: scale(1);
+}
+
+.node::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 1.5px solid var(--color-background);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.phase:last-child[data-state="current"] .node::after {
+  opacity: 1;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 0.98rem;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.text {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-secondary);
+  border-radius: var(--radius-lg);
+}
+
+.highlightIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-contrast);
+  flex-shrink: 0;
+}
+
+.highlightBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.highlightTitle {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.highlightText {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 860px) {
+  .phases {
+    margin-top: var(--space-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .phases {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .wave {
+    display: none;
+  }
+  .progressDot {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .phases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waveSegment,
+  .progressDot,
+  .number,
+  .node {
+    transition-duration: 0s !important;
+  }
+}

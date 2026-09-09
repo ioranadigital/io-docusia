@@ -1,0 +1,109 @@
+.title {
+  margin-top: var(--space-2);
+  font-size: var(--text-h2);
+}
+
+.intro {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-5);
+  color: var(--color-text-muted);
+  max-width: 42ch;
+}
+
+.areas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-bottom: var(--space-5);
+}
+
+.areas button {
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.areas button:hover {
+  border-color: var(--color-support);
+  color: var(--color-text);
+}
+
+.areaActive,
+.areaActive:hover {
+  color: var(--color-text) !important;
+  background: var(--color-secondary) !important;
+  border-color: var(--color-support) !important;
+}
+
+.example {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  animation: exampleFadeIn 0.2s ease;
+}
+
+@keyframes exampleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exampleTag {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-contrast);
+}
+
+.exampleFlow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.exampleFlow li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.exampleIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  color: var(--color-contrast);
+}
+
+.exampleStepAccent {
+  color: var(--color-text);
+}
+
+.exampleStepAccent .exampleIcon {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}

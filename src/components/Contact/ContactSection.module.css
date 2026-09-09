@@ -1,0 +1,27 @@
+.section {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-8);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .grid > *:first-child {
+    padding-top: 0;
+    order: 2;
+  }
+
+  .grid > *:last-child {
+    order: 1;
+  }
+}

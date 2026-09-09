@@ -1,46 +1,40 @@
-import { Kumbh_Sans } from "next/font/google";
-import localFont from 'next/font/local';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import "slick-carousel/slick/slick.css";
-import "./assets/main.css";
-import './assets/responsive.css';
+import { Inter, Caveat } from "next/font/google";
+import "./globals.css";
 
-const kumbh_sans = Kumbh_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--body-color-font',
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const clashdisplay = localFont({
-  src: './assets/fonts/ClashDisplay.ttf',
-  variable: '--heading-font',
-})
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-caveat",
+  display: "swap",
+});
 
 export const metadata = {
   title: {
-    absolute: '',
-    default: 'Dexon - SEO & Digital Marketing Agency NextJS Template',
-    template: '%s | Dexon - SEO & Digital Marketing Agency NextJS Template',
+    default: "Docusia — Inteligencia documental y automatización para empresas",
+    template: "%s | Docusia",
   },
-  description: 'Dexon - SEO & Digital Marketing Agency NextJS Template',
+  description:
+    "Docusia analiza tus procesos, organiza tu información y utiliza IA y automatización para reducir tareas repetitivas, errores y tiempos de gestión.",
   openGraph: {
-    title: 'Dexon - SEO & Digital Marketing Agency NextJS Template',
-    description: 'Dexon - SEO & Digital Marketing Agency NextJS Template',
-    image: '/openGraphImage.jpg',
+    title: "Docusia — Inteligencia documental y automatización para empresas",
+    description:
+      "Docusia analiza tus procesos, organiza tu información y utiliza IA y automatización para reducir tareas repetitivas, errores y tiempos de gestión.",
+    locale: "es_ES",
+    type: "website",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <meta name="author" content="Themeservices" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
-      <body className={`${kumbh_sans.variable} ${clashdisplay.variable}`}>
-        {children}
-      </body>
+    <html lang="es" className={`${inter.variable} ${caveat.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

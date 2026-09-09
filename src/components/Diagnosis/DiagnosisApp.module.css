@@ -1,0 +1,8 @@
+.section {
+  padding: var(--space-7) 0 var(--space-8);
+}
+
+.centered {
+  max-width: 760px;
+  margin: 0 auto;
+}

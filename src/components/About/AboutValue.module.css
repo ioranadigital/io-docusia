@@ -1,0 +1,162 @@
+.section {
+  padding: var(--space-7) 0;
+}
+
+.centered {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  justify-content: center;
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--text-h2);
+}
+
+.text {
+  margin-top: var(--space-4);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.flow {
+  margin-top: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.companyBox {
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.companyLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.companyItems {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.companyItems span {
+  padding: 0.3rem 0.7rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.stem {
+  width: 2px;
+  height: 28px;
+  background-image: linear-gradient(var(--color-support) 60%, transparent 0%);
+  background-size: 2px 8px;
+  background-repeat: repeat-y;
+}
+
+.hub {
+  padding: 0.7rem 1.6rem;
+  background: var(--color-diagnosis-bg);
+  color: var(--color-background);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.steps {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.stepNumber {
+  color: var(--color-support);
+  font-family: var(--font-heading);
+}
+
+.stepsList {
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.stepsListItem {
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--color-border);
+}
+
+.stepsListTitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-contrast);
+}
+
+.stepsListText {
+  margin-top: 0.3rem;
+  font-size: 0.84rem;
+  color: var(--color-text-muted);
+}
+
+.quote {
+  margin-top: var(--space-7);
+  padding: var(--space-5);
+  background: var(--color-secondary);
+  border-radius: var(--radius-md);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+@media (max-width: 860px) {
+  .stepsList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .stepsList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

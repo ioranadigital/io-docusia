@@ -1,0 +1,134 @@
+.section {
+  padding: var(--space-7) 0 var(--space-8);
+}
+
+.title {
+  margin-top: var(--space-2);
+  font-size: var(--text-h1);
+}
+
+.intro {
+  margin-top: var(--space-3);
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+  max-width: 62ch;
+}
+
+.summary {
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.summaryBlock {
+  padding: var(--space-4);
+  background: var(--color-secondary);
+  border-radius: var(--radius-md);
+}
+
+.summaryWide {
+  grid-column: 1 / -1;
+}
+
+.summaryLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-contrast);
+}
+
+.summaryValue {
+  margin-top: 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.chips {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  padding: 0.3rem 0.7rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.block {
+  margin-top: var(--space-7);
+}
+
+.blockTitle {
+  font-size: var(--text-h3);
+}
+
+.blockIntro {
+  margin-top: var(--space-2);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.blockBody {
+  margin-top: var(--space-4);
+}
+
+.principle {
+  margin-top: var(--space-7);
+  padding: var(--space-5);
+  background: var(--color-diagnosis-bg);
+  color: var(--color-background);
+  border-radius: var(--radius-lg);
+}
+
+.principleTitle {
+  font-size: 1.15rem;
+  color: var(--color-background);
+}
+
+.principleText {
+  margin-top: var(--space-2);
+  font-size: 0.92rem;
+  color: var(--color-primary);
+  max-width: 62ch;
+}
+
+.leadIntro {
+  margin-top: var(--space-7);
+  text-align: center;
+}
+
+.leadIntroText {
+  margin-top: var(--space-2);
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.leadActions {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.leadFormWrap {
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

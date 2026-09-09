@@ -1,0 +1,145 @@
+.section {
+  padding: var(--space-7) 0;
+}
+
+.centered {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  justify-content: center;
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--text-h2);
+}
+
+.intro {
+  margin-top: var(--space-4);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.disciplines {
+  margin-top: var(--space-7);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.discipline {
+  padding-top: var(--space-5);
+  border-top: 2px solid var(--color-border);
+}
+
+.disciplineIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-contrast);
+}
+
+.disciplineTitle {
+  margin-top: var(--space-4);
+  font-size: var(--text-h3);
+}
+
+.disciplineClaim {
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-contrast);
+}
+
+.disciplineText {
+  margin-top: var(--space-3);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.tags {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  padding: 0.28rem 0.65rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+
+.graph {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.graphSources {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.graphSource {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.graphSource span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-contrast);
+}
+
+.graphStem {
+  width: 2px;
+  height: 32px;
+  background-image: linear-gradient(var(--color-support) 60%, transparent 0%);
+  background-size: 2px 8px;
+  background-repeat: repeat-y;
+}
+
+.graphHub {
+  padding: 0.85rem 1.8rem;
+  background: var(--color-diagnosis-bg);
+  color: var(--color-background);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+  .disciplines {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+}

@@ -1,0 +1,62 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text);
+}
+
+.logoImage {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.imageMark {
+  display: block;
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+}
+
+.mark {
+  flex-shrink: 0;
+}
+
+.wordmarkGroup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.wordmark {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 0.01em;
+}
+
+.tagline {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.onDark {
+  color: var(--color-background);
+}
+
+.onDark .tagline {
+  color: var(--color-primary);
+}
+
+@media (max-width: 420px) {
+  .mark {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .wordmark {
+    font-size: 1.15rem;
+  }
+}
