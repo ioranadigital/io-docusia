@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./DiagnosisCTA.module.css";
 
@@ -31,10 +32,12 @@ export default function DiagnosisCTA({
     <section id={sectionId} className={`section ${styles.section}`} aria-labelledby={titleId}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.titleBlock}>
-          <img
+          <Image
             src="/diagnosis/diagnosis-graphic.png"
             alt=""
             aria-hidden="true"
+            width={300}
+            height={300}
             className={styles.decoration}
           />
           <p className={`eyebrow ${styles.eyebrow}`}>{eyebrow}</p>

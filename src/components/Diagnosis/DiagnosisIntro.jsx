@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRightIcon } from "../icons";
 import styles from "./DiagnosisIntro.module.css";
 
@@ -29,9 +30,12 @@ export default function DiagnosisIntro({ onStart }) {
         </div>
 
         <div className={styles.visual} aria-hidden="true">
-          <img
+          <Image
             src="/diagnosis/diagnosis-hero.png"
             alt=""
+            width={1586}
+            height={992}
+            sizes="(max-width: 860px) 420px, 50vw"
             className={styles.visualImage}
           />
         </div>

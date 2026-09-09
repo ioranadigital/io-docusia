@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SignatureIcon } from "../icons";
 import styles from "./SolutionCard.module.css";
 
@@ -22,7 +23,15 @@ export default function SolutionCard({
 
       {variant === "image" ? (
         <div className={styles.imagePanel}>
-          <img src={image} alt={imageAlt || ""} className={styles.flowImage} />
+          <div className={styles.imageFrame}>
+            <Image
+              src={image}
+              alt={imageAlt || ""}
+              fill
+              sizes="(max-width: 640px) 90vw, (max-width: 1100px) 45vw, 320px"
+              className={styles.flowImage}
+            />
+          </div>
         </div>
       ) : variant === "signature" ? (
         <div className={`${styles.panel} ${styles.signaturePanel}`}>

@@ -40,7 +40,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <Logo image="/brand/logo-wordmark.png" imageHeight="clamp(30px, 8vw, 46px)" />
+        <Logo image="/brand/logo-wordmark.png" imageHeight="clamp(30px, 8vw, 46px)" priority />
 
         <nav className={styles.nav} aria-label="Navegación principal">
           <ul>

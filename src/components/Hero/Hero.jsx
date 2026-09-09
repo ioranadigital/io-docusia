@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "../icons";
 import styles from "./Hero.module.css";
@@ -31,9 +32,13 @@ export default function Hero() {
           </p>
         </div>
         <div className={styles.heroImage}>
-          <img
+          <Image
             src="/hero/hero-diagram-test.png"
             alt="Documentos, email, datos y formularios convergen en Docusia y se transforman en tareas, registros, alertas y archivos."
+            width={1536}
+            height={1024}
+            sizes="(max-width: 900px) 100vw, 50vw"
+            priority
           />
         </div>
       </div>

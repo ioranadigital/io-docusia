@@ -20,8 +20,9 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
 COPY package.json pnpm-lock.yaml* ./
 
-# Install production dependencies only
-RUN npm install -g pnpm@9 && pnpm install --prod --frozen-lockfile && pnpm add sharp
+# Install production dependencies only (sharp is now a normal dependency,
+# used both by next/image's optimizer and no longer added separately here)
+RUN npm install -g pnpm@9 && pnpm install --prod --frozen-lockfile
 
 EXPOSE 3006
 ENV NODE_ENV=production

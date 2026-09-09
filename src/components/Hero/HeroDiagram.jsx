@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   DocumentIcon,
   EmailIcon,
@@ -68,7 +69,7 @@ export default function HeroDiagram() {
           <span className={styles.layer} aria-hidden="true" />
           <span className={styles.layer} aria-hidden="true" />
           <div className={styles.centerCard}>
-            <img src="/brand/isotipo.png" alt="" width={48} height={48} />
+            <Image src="/brand/isotipo.png" alt="" width={48} height={48} />
             <span>DOCUSIA</span>
           </div>
         </div>
