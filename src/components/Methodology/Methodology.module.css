@@ -90,7 +90,7 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--color-primary);
-  transition: color 0.35s ease;
+  transition: color 0.5s ease;
 }
 
 .phase[data-state="current"] .number {
@@ -114,8 +114,8 @@
   color: var(--color-support);
   margin: 0.2rem 0 0.45rem;
   flex-shrink: 0;
-  transition: background-color 0.35s ease, border-color 0.35s ease,
-    color 0.35s ease, transform 0.35s ease;
+  transition: background-color 0.5s ease, border-color 0.5s ease,
+    color 0.5s ease, transform 0.5s ease;
 }
 
 .phase[data-state="pending"] .node {
@@ -137,22 +137,14 @@
   transform: scale(1);
 }
 
-.node::after {
-  content: "";
-  position: absolute;
-  top: -1px;
-  right: -1px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+.phase:last-child[data-state="current"] .node {
   background: var(--color-accent);
-  border: 1.5px solid var(--color-background);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  border-color: var(--color-accent);
+  color: var(--color-background);
 }
 
-.phase:last-child[data-state="current"] .node::after {
-  opacity: 1;
+.phase:last-child[data-state="current"] .number {
+  color: var(--color-accent);
 }
 
 .label {

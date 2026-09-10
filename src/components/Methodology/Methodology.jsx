@@ -46,8 +46,12 @@ const PHASE_CENTERS = phaseCenters(PHASES.length);
 // de fases dentro del viewport se traduce en una fracción 0..1. El máximo
 // alcanzado se conserva en un ref, por lo que las fases completadas no
 // retroceden si el usuario vuelve a subir.
-const TRIGGER_START_VH = 0.82; // ratio=0 cuando el top de la fila está aquí
-const TRIGGER_END_VH = 0.32; // ratio=1 cuando el bottom de la fila alcanza aquí
+const TRIGGER_START_VH = 0.95; // ratio=0 cuando el top de la fila está aquí (justo antes de entrar del todo)
+const TRIGGER_END_VH = 0.25; // ratio=1 cuando el bottom de la fila llega aquí (todavía bien visible)
+// Margen de llegada: la última fase se da por alcanzada al 90% del recorrido,
+// no al 100% exacto, para que no se quede a medias si el usuario no hace
+// scroll hasta el límite geométrico exacto.
+const COMPLETION_MARGIN = 0.9;
 
 function computeRatio(rect, viewportHeight) {
   const triggerStart = viewportHeight * TRIGGER_START_VH;
@@ -136,9 +140,11 @@ export default function Methodology() {
     };
   }, [onScrollOrResize, updateRatio]);
 
+  const easedRatio = useMemo(() => Math.min(1, ratio / COMPLETION_MARGIN), [ratio]);
+
   const reachedIndex = useMemo(
-    () => Math.min(PHASES.length - 1, Math.floor(ratio * PHASES.length)),
-    [ratio]
+    () => Math.min(PHASES.length - 1, Math.floor(easedRatio * PHASES.length)),
+    [easedRatio]
   );
 
   const phaseState = (index) => {
@@ -147,7 +153,7 @@ export default function Methodology() {
     return "pending";
   };
 
-  const dotLeft = `${ratio * 100}%`;
+  const dotLeft = `${easedRatio * 100}%`;
 
   return (
     <div id="metodologia" aria-labelledby="methodology-title" ref={containerRef}>
@@ -181,7 +187,7 @@ export default function Methodology() {
               key={d}
               className={styles.waveSegment}
               data-traveled={
-                PHASE_CENTERS[index + 1] <= ratio * 100 ? "true" : undefined
+                PHASE_CENTERS[index + 1] <= easedRatio * 100 ? "true" : undefined
               }
               d={d}
             />
@@ -190,7 +196,10 @@ export default function Methodology() {
         <span
           className={styles.progressDot}
           aria-hidden="true"
-          style={{ left: dotLeft, opacity: ratio > 0 ? 0.85 : 0 }}
+          style={{
+            left: dotLeft,
+            opacity: easedRatio > 0 && easedRatio < 1 ? 0.85 : 0,
+          }}
         />
         {PHASES.map(({ n, label, text, Icon }, index) => (
           <li

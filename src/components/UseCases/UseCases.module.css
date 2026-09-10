@@ -33,14 +33,15 @@
 
 .areas button:hover {
   border-color: var(--color-support);
+  background: var(--color-primary);
   color: var(--color-text);
 }
 
 .areaActive,
 .areaActive:hover {
   color: var(--color-text) !important;
-  background: var(--color-secondary) !important;
-  border-color: var(--color-support) !important;
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
 }
 
 .example {
