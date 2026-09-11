@@ -27,6 +27,11 @@
   margin-top: var(--space-7);
   display: flex;
   flex-direction: column;
+}
+
+.diagram {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -56,10 +61,24 @@
 .companyItems span {
   padding: 0.3rem 0.7rem;
   background: var(--color-surface);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-text);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.companyItems span[data-state="active"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.companyItems span[data-state="settled"] {
+  background: var(--color-secondary);
+  border-color: var(--color-support);
+  color: var(--color-contrast);
 }
 
 .stem {
@@ -68,6 +87,13 @@
   background-image: linear-gradient(var(--color-support) 60%, transparent 0%);
   background-size: 2px 8px;
   background-repeat: repeat-y;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.45s ease;
+}
+
+.stem[data-drawn="true"] {
+  transform: scaleY(1);
 }
 
 .hub {
@@ -79,44 +105,102 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  border: 2px solid transparent;
+  transform: scale(1);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.steps {
-  margin-top: var(--space-6);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-3);
+.hub[data-state="pulse"] {
+  border-color: var(--color-accent);
+  transform: scale(1.03);
 }
 
-.step {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-text);
+.connectorWrap {
+  position: relative;
+  width: 100%;
+  height: 56px;
 }
 
-.stepNumber {
-  color: var(--color-support);
-  font-family: var(--font-heading);
+/* Tronco vertical: Docusia -> barra horizontal. Misma técnica que .stem
+   (línea discontinua vía background-image, revelada con scaleY) en vez de
+   SVG: con un contenedor tan ancho y bajo, un viewBox con
+   preserveAspectRatio="none" estira de forma muy desigual (x >> y) y
+   distorsiona el grosor del trazo de las líneas verticales. */
+.connectorTrunk {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 16px;
+  margin-left: -1px;
+  background-image: linear-gradient(var(--color-support) 60%, transparent 0%);
+  background-size: 2px 8px;
+  background-repeat: repeat-y;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.35s ease;
+}
+
+.connectorTrunk[data-drawn="true"] {
+  transform: scaleY(1);
+}
+
+.connectorBar {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 16px;
+  height: 1.5px;
+  background: var(--color-support);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.connectorBar[data-drawn="true"] {
+  transform: scaleX(1);
+}
+
+.connectorDrop {
+  position: absolute;
+  top: 16px;
+  width: 2px;
+  height: 40px;
+  margin-left: -1px;
+  background-image: linear-gradient(var(--color-support) 60%, transparent 0%);
+  background-size: 2px 6px;
+  background-repeat: repeat-y;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.connectorDrop[data-drawn="true"] {
+  transform: scaleY(1);
 }
 
 .stepsList {
-  margin-top: var(--space-6);
+  margin-top: 2px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: var(--space-4);
 }
 
 .stepsListItem {
-  padding-top: var(--space-3);
+  padding: var(--space-3);
   border-top: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.stepsListItem[data-state="current"] {
+  background: var(--color-accent);
+  border-top-color: var(--color-accent);
+}
+
+.stepsListItem[data-state="completed"] {
+  border-top-color: var(--color-support);
 }
 
 .stepsListTitle {
@@ -124,6 +208,15 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color 0.4s ease;
+}
+
+.stepsListItem[data-state="current"] .stepsListTitle {
+  color: var(--color-text);
+}
+
+.stepsListItem[data-state="completed"] .stepsListTitle {
   color: var(--color-contrast);
 }
 
@@ -131,6 +224,11 @@
   margin-top: 0.3rem;
   font-size: 0.84rem;
   color: var(--color-text-muted);
+  transition: color 0.4s ease;
+}
+
+.stepsListItem[data-state="current"] .stepsListText {
+  color: var(--color-text);
 }
 
 .quote {
@@ -150,6 +248,14 @@
 }
 
 @media (max-width: 860px) {
+  /* Por debajo de este ancho stepsList deja de ser una fila de 5 columnas
+     iguales, así que el conector en abanico (calculado para 5 centros) ya
+     no alinearía con las tarjetas — se oculta y basta con el tronco hacia
+     Docusia. */
+  .connectorWrap {
+    display: none;
+  }
+
   .stepsList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -158,5 +264,18 @@
 @media (max-width: 480px) {
   .stepsList {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .companyItems span,
+  .stem,
+  .hub,
+  .connectorTrunk,
+  .connectorBar,
+  .connectorDrop,
+  .stepsListItem,
+  .stepsListTitle {
+    transition-duration: 0s !important;
   }
 }

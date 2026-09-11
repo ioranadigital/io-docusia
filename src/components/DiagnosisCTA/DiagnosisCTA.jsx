@@ -14,10 +14,10 @@ export default function DiagnosisCTA({
       merece la pena mejorar.
     </>
   ),
-  primaryLabel = "Contacto",
-  primaryHref = "/contacto",
-  secondaryLabel = "Analizar mi proceso",
-  secondaryHref = "/analizar-mi-proceso",
+  primaryLabel = "Analizar mi proceso",
+  primaryHref = "/analizar-mi-proceso",
+  secondaryLabel = "Contactar con Docusia",
+  secondaryHref = "/contacto",
   claim = (
     <>
       Menos trabajo moviendo información.
@@ -62,7 +62,7 @@ export default function DiagnosisCTA({
             <Link href={primaryHref} className={actionClass(primaryLabel, "btnOnDark")}>
               {primaryLabel}
             </Link>
-            <Link href={secondaryHref} className={actionClass(secondaryLabel, "btnOutlineOnDark")}>
+            <Link href={secondaryHref} className={actionClass(secondaryLabel, "btnOnDark")}>
               {secondaryLabel}
             </Link>
           </div>
