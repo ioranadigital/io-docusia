@@ -199,3 +199,12 @@
 .backButton:hover {
   color: var(--color-text);
 }
+
+.btn {
+  background: var(--color-contrast) !important;
+  color: var(--color-background) !important;
+}
+
+.btn:hover {
+  background: var(--color-text) !important;
+}

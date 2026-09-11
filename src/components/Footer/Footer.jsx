@@ -1,7 +1,9 @@
 "use client";
 
 import { useId, useState } from "react";
+import Link from "next/link";
 import Logo from "../Logo/Logo";
+import CookiePreferencesTrigger from "../Consent/CookiePreferencesTrigger";
 import styles from "./Footer.module.css";
 
 const COLUMNS = [
@@ -111,11 +113,13 @@ export default function Footer() {
       <div className={`container ${styles.bottom}`}>
         <p>© {year} Docusia. Todos los derechos reservados.</p>
         <p className={styles.legal}>
-          <span>Aviso legal</span>
+          <Link href="/legal/aviso-legal">Aviso legal</Link>
           <span aria-hidden="true">·</span>
-          <span>Privacidad</span>
+          <Link href="/legal/privacidad">Privacidad</Link>
           <span aria-hidden="true">·</span>
-          <span>Cookies</span>
+          <Link href="/legal/cookies">Cookies</Link>
+          <span aria-hidden="true">·</span>
+          <CookiePreferencesTrigger className={styles.cookieTrigger} />
         </p>
       </div>
     </footer>

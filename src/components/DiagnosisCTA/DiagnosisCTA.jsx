@@ -14,8 +14,8 @@ export default function DiagnosisCTA({
       merece la pena mejorar.
     </>
   ),
-  primaryLabel = "Cuéntanos tu proceso",
-  primaryHref = "/analizar-mi-proceso",
+  primaryLabel = "Contacto",
+  primaryHref = "/contacto",
   secondaryLabel = "Analizar mi proceso",
   secondaryHref = "/analizar-mi-proceso",
   claim = (
@@ -27,6 +27,16 @@ export default function DiagnosisCTA({
   ),
 }) {
   const titleId = `${sectionId}-title`;
+
+  // El botón "Analizar mi proceso" siempre va en amarillo, sea cual sea su
+  // posición (primario o secundario) — depende del texto, no del slot,
+  // porque este componente se reutiliza con distintas combinaciones de
+  // labels según la página (home vs. nosotros).
+  function actionClass(label, fallbackClass) {
+    return label === "Analizar mi proceso"
+      ? `btn ${styles.btnAccent} ${styles.btn}`
+      : `btn ${fallbackClass} ${styles.btn}`;
+  }
 
   return (
     <section id={sectionId} className={`section ${styles.section}`} aria-labelledby={titleId}>
@@ -49,10 +59,10 @@ export default function DiagnosisCTA({
         <div className={styles.middle}>
           <p className={styles.text}>{text}</p>
           <div className={styles.actions}>
-            <Link href={primaryHref} className={`btn btnOnDark ${styles.btn}`}>
+            <Link href={primaryHref} className={actionClass(primaryLabel, "btnOnDark")}>
               {primaryLabel}
             </Link>
-            <Link href={secondaryHref} className={`btn btnOutlineOnDark ${styles.btn}`}>
+            <Link href={secondaryHref} className={actionClass(secondaryLabel, "btnOutlineOnDark")}>
               {secondaryLabel}
             </Link>
           </div>

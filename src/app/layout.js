@@ -1,4 +1,6 @@
 import { Inter, Caveat } from "next/font/google";
+import { ConsentProvider } from "../lib/consent/ConsentContext";
+import CookieConsentRoot from "../components/Consent/CookieConsentRoot";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,7 +36,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${inter.variable} ${caveat.variable}`}>
-      <body>{children}</body>
+      <body>
+        <ConsentProvider>
+          {children}
+          <CookieConsentRoot />
+        </ConsentProvider>
+      </body>
     </html>
   );
 }

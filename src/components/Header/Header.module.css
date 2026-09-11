@@ -45,6 +45,15 @@
   white-space: nowrap;
 }
 
+.ctaGreen {
+  background: var(--color-contrast);
+  color: var(--color-background);
+}
+
+.ctaGreen:hover {
+  background: var(--color-text);
+}
+
 .menuButton {
   display: none;
   align-items: center;

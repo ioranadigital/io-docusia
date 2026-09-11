@@ -56,7 +56,7 @@ export default function Header() {
           <Link href="/contacto" className={`btn btnSecondary ${styles.cta} ${styles.ctaSecondary}`}>
             Contacto
           </Link>
-          <Link href="/analizar-mi-proceso" className={`btn btnPrimary ${styles.cta}`}>
+          <Link href="/analizar-mi-proceso" className={`btn ${styles.ctaGreen} ${styles.cta}`}>
             Analizar mi proceso
           </Link>
           <button
@@ -91,7 +91,7 @@ export default function Header() {
         </nav>
         <Link
           href="/analizar-mi-proceso"
-          className={`btn btnPrimary ${styles.panelCta}`}
+          className={`btn ${styles.ctaGreen} ${styles.panelCta}`}
           onClick={() => setOpen(false)}
         >
           Analizar mi proceso
