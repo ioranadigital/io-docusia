@@ -83,7 +83,7 @@ export default function ContactForm() {
       return;
     }
 
-    if (result.reason === "not_configured") {
+    if (result.reason === "not_configured" || result.reason === "email_not_configured") {
       track(CONTACT_EVENTS.SUBMITTED, { motive: form.motive });
       setStatus("pending");
       return;
